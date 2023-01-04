@@ -1,0 +1,30 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@page "/authentication/{action}"
+@inherits LocalizableComponentBase<Authentication>
+
+<div class="is-size-3">
+    <RemoteAuthenticatorView
+        Action=@Action
+        LogOut=@LocalizedLogOutFragment
+        LogOutSucceeded=@LocalizedLoggedOutFragment
+        LogOutFailed=@LocalizedLogOutFailedFragment
+        LogInFailed=@LocalizedLogInFailedFragment>
+
+        <LoggingIn>
+            <LoadingIndicator Message=@Localizer["CheckingLoginState"]
+                              HideLogo="true" />
+        </LoggingIn>
+        <CompletingLogOut>
+            <LoadingIndicator Message=@Localizer["ProcessingLogoutCallback"]
+                              HideLogo="true" />
+        </CompletingLogOut>
+        <CompletingLoggingIn>
+            <LoadingIndicator Message=@Localizer["CompletingLogin"]
+                              HideLogo="true" />
+        </CompletingLoggingIn>
+
+    </RemoteAuthenticatorView>
+</div>

@@ -1,0 +1,72 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@inject IJokeFactory JokeFactory
+@inject ILogger<JokeComponent> Logger
+@inject IStringLocalizer<JokeComponent> Localizer
+
+<article class="blazor-tile-container" @ondblclick=@RefreshJokeAsync>
+    <div class="gradient-bg jokes-gradient"></div>
+    <div class="icon-overlay circle-svg"></div>
+    <div class="blaze-content">
+        <p class="title  is-family-code">
+            <span class="is-emoji">🤓</span>
+            <span class="has-text-light">@Localizer["Jokes"]</span>
+        </p>
+        <AdditiveSpeechComponent Message=@_jokeText />
+        <div class="content">
+            @if (_isLoadingJoke)
+            {
+                <SpinnerComponent />
+            }
+            else if (_jokeText is not null)
+            {
+                <blockquote class="has-text-black">
+                    <span id="joke" class="pb-4">@_jokeText</span>
+                    <br>
+                    @if (_sourceDetails is { Site: not null })
+                    {
+                        <cite>
+                            &mdash;
+                            @{
+                                var (site, source) = _sourceDetails.Value;
+                            }
+                            <a href="@(site.ToString())" target="_blank">
+                                @(source.ToString())
+                            </a>
+                        </cite>
+                    }
+                </blockquote>
+            }
+        </div>
+    </div>
+</article>
+
+@code {
+    private string? _jokeText = null;
+    private JokeSourceDetails? _sourceDetails;
+    private bool _isLoadingJoke = false;
+
+    protected override Task OnInitializedAsync() =>
+        RefreshJokeAsync();
+
+    private async Task RefreshJokeAsync()
+    {
+        _isLoadingJoke = true;
+
+        try
+        {
+            (_jokeText, _sourceDetails) =
+                await JokeFactory.GetRandomJokeAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, ex.Message);
+        }
+        finally
+        {
+            _isLoadingJoke = false;
+        }
+    }
+}

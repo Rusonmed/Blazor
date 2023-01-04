@@ -1,0 +1,35 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+<CascadingAuthenticationState>
+    <Error>
+        <Router AppAssembly="@typeof(App).Assembly">
+            <Found Context="routeData">
+                <AuthorizeRouteView @ref="_view" RouteData="@routeData"
+                     DefaultLayout="@typeof(MainLayout)">
+                    <NotAuthorized>
+                        @if (context.User?.Identity?.IsAuthenticated ?? false)
+                        {
+                            <p>You are not authorized to access this resource.</p>
+                        }
+                        else
+                        {
+                            <RedirectToLogin />
+                        }
+                    </NotAuthorized>
+                </AuthorizeRouteView>
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(MainLayout)">
+                    <NotFoundPage RouteData=@RouteData />
+                </LayoutView>
+            </NotFound>
+        </Router>
+    </Error>
+</CascadingAuthenticationState>
+
+@code {
+    private AuthorizeRouteView _view = null!;
+    private RouteData RouteData => _view.RouteData;
+}

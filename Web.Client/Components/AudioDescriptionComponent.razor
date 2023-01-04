@@ -1,0 +1,20 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@inherits LocalizableComponentBase<AudioDescriptionComponent>
+
+<span class="navbar-item">
+    <button class="button is-info is-rounded level-item"
+        title=@Localizer["Audio"] @onclick=ShowAsync>
+        <span class="icon">
+            <i class="fas fa-lg fa-audio-description"></i>
+        </span>
+    </button>
+</span>
+
+<AudioDescriptionModalComponent
+    @ref="_modal"
+    Title=@Localizer["Settings"]
+    Details=@_details
+    OnDetailsSaved=@OnDetailsSaved/>

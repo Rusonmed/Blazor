@@ -1,0 +1,14 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@inject NavigationManager Navigation
+
+@code {
+    protected override void OnInitialized()
+    {
+        string returnUrl = Uri.EscapeDataString(Navigation.Uri);
+        Navigation.NavigateTo(
+            $"authentication/login?returnUrl={returnUrl}");
+    }
+}

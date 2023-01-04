@@ -1,0 +1,33 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@page "/"
+@inherits LocalizableComponentBase<Index>
+
+<PageTitle>
+    @Localizer["Home"]
+</PageTitle>
+
+<AuthorizeView>
+    <NotAuthorized>
+        <RedirectToLogin />
+    </NotAuthorized>
+    <Authorized>
+        <div id="index" class="tile is-ancestor">
+            <div class="tile is-vertical is-centered is-8-widescreen">
+                <div class="tile">
+                    <div class="tile is-parent">
+                        <IntroductionComponent />
+                    </div>
+                    <div class="tile is-parent">
+                        <JokeComponent />
+                    </div>
+                </div>
+                <div class="tile is-parent">
+                    <WeatherComponent />
+                </div>
+            </div>
+        </div>
+    </Authorized>
+</AuthorizeView>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Learning Blazor</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
+
+    <!-- Bulma: micro extensions -->
+    <link href="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.4/dist/css/bulma-slider.min.css"
+          rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="https://cdn.jsdelivr.net/npm/bulma-quickview@2.0.0/dist/css/bulma-quickview.min.css"
+          rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css"
+          rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="https://cdn.jsdelivr.net/npm/bulma-badge@3.0.1/dist/css/bulma-badge.min.css"
+          rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-badge@1.0.1/dist/bulma-badge.min.css"
+          rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link type="text/css" href="https://unpkg.com/bulma-prefers-dark"
+          rel="preload" as="style" onload="this.rel='stylesheet'">
+
+    <!-- Cookie consent styles -->
+    <link href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+          rel="preload" as="style" onload="this.rel='stylesheet'" />
+
+    <!-- Flag emoji -->
+    <link href="https://cdn.jsdelivr.net/npm/flag-icons@6.1.1/css/flag-icons.min.css"
+          integrity="sha256-fqRTUXSq3UECGMghTL/21uwvhdvXls2QhU5HC4FQ8Cw=" crossorigin="anonymous"
+          rel="preload" as="style" onload="this.rel='stylesheet'">
+
+    <link href="/css/app.css" rel="stylesheet" />
+    <link href="Web.Client.styles.css" rel="stylesheet" />
+    <link href="/_content/Web.TwitterComponents/twitter-component.css"
+          rel="stylesheet" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
+
+    <base href="/" />
+
+    <script src="https://kit.fontawesome.com/b5bcf1e25a.js"
+            crossorigin="anonymous"></script>
+    <script src="/js/app.js"></script>
+</head>
+
+<body>
+    <section id="app" class="hero is-fullheight-with-navbar">
+        <div id="splash">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <img src="media/blazor-logo.png" class="blazor-logo mb-5" />
+                    <div class="fa-3x is-family-code">
+                        <span class="has-text-weight-bold">
+                            Blazor WebAssembly:
+                        </span> Loading...
+                        <i class="fas fa-sync fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<div id="blazor-error-ui">
+        <div class="modal is-active">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <article class="message is-warning is-medium">
+                    <div class="message-header">
+                        <p>
+                            <span class="icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </span>
+                            <span>Error</span>
+                        </p>
+                    </div>
+                    <div class="message-body">
+                        An unhandled error has occurred.
+                        <button class="button is-danger is-pulled-right"
+                                onClick="window.location.assign(window.location.origin)">
+                            <span class="icon">
+                                <i class="fas fa-redo"></i>
+                            </span>
+                            <span>Reload</span>
+                        </button>
+                    </div>
+                </article>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    </div>-->
+
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+            data-cfasync="false"></script>
+    <script src="/js/cookieconsent.js"></script>
+    <script src="/_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
+    <!--<script src="/_content/Web.TwitterComponents/twitter-component.js"></script>-->
+    <script src="/_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+</body>
+
+</html>

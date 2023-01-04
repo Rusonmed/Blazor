@@ -1,0 +1,28 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@page "/pwned"
+@attribute [Authorize]
+@inherits LocalizableComponentBase<Pwned>
+
+<PageTitle>
+	Pwned
+</PageTitle>
+
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-centered is-7">
+        <div class="tile">
+            <div class="tile is-parent is-clickable" @onclick=@NavigateToBreaches>
+                <article class="tile is-child notification is-warning">
+                    <p class="title"><span class="is-emoji">🤬</span> @Localizer["Breaches"]</p>
+                </article>
+            </div>
+            <div class="tile is-parent is-clickable" @onclick=@NavigateToPasswords>
+                <article class="tile is-child notification is-danger">
+                    <p class="title"><span class="is-emoji">🔑</span> @Localizer["Passwords"]</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>

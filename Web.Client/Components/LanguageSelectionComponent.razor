@@ -1,0 +1,93 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@inherits LocalizableComponentBase<LanguageSelectionComponent>
+
+<ErrorBoundary>
+	<ChildContent>
+	<span class="navbar-item">
+		<button class="button level-item is-rounded is-warning"
+			title=@Localizer["Language"] @onclick=ShowAsync>
+			<span class="icon">
+				<i class="fas fa-lg fa-language"></i>
+			</span>
+		</button>
+	</span>
+	</ChildContent>
+	<ErrorContent>
+	<span class="navbar-item">
+		<button class="button level-item is-rounded is-warning"
+			disabled title=@Localizer["Language"]>
+			<span class="icon">
+				<i class="fas fa-language"></i>
+			</span>
+		</button>
+	</span>
+	</ErrorContent>
+</ErrorBoundary>
+
+<ModalComponent @ref="_modal">
+    <TitleContent>
+        <span class="icon pr-2">
+            <i class="fas fa-cogs"></i>
+        </span>
+        <span>@Localizer["ChangeLanguage"]</span>
+    </TitleContent>
+
+    <BodyContent>
+        <form>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <span class="select is-medium is-fullwidth">
+                        <select id="languages" class="has-dotnet-scrollbar" @bind=_selectedCulture>
+                        @if (_supportedCultures?.Any() ?? false)
+                        {
+                            var lcid = Culture.CurrentCulture.LCID;
+                            Logger.LogInformation("Current culture LCID: {id}", lcid);
+
+                            @foreach (var kvp
+                                in _supportedCultures.OrderBy(c => c.Key.Name))
+                            {
+                                    var (culture, _) = kvp;
+                                    <option selected="@(lcid == culture.LCID)"
+                                        value="@culture">
+                                    @(ToDisplayName(kvp))
+                                </option>
+                            }
+                        }
+                        </select>
+                    </span>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-globe"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field is-fullwidth is-size-1">
+                <span class="fi fi-@Culture.GetCultureTwoLetterRegionName(_selectedCulture)"></span>
+            </div>
+        </form>
+    </BodyContent>
+
+    <ButtonContent>
+        <div class="buttons are-large">
+            <button class="button is-success"
+                @onclick="ConfirmAsync">
+                <span class="icon">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span>@Localizer["Okay"]</span>
+            </button>
+            @if (_modal is not null)
+            {
+                <button class="button is-danger"
+                    @onclick=@(() => _modal.CancelAsync())>
+                    <span class="icon">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>@Localizer["Cancel"]</span>
+                </button>
+            }
+        </div>
+    </ButtonContent>
+</ModalComponent>

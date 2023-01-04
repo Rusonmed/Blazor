@@ -1,0 +1,38 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@inherits LocalizableComponentBase<LoginDisplay>
+@inject SignOutSessionStateManager SignOutManager
+
+<span class="navbar-item">
+    <AuthorizeView>
+        <Authorizing>
+            <button class="button is-rounded is-loading level-item" disabled>
+                @Localizer["LoggingIn"]
+            </button>
+        </Authorizing>
+        <Authorized>
+            @{
+                var user = context.User!;
+                var userIdentity = user.Identity!;
+                var userToolTip = $"{userIdentity.Name} ({user.GetFirstEmailAddress()})";
+            }
+            <button class="button is-rounded level-item has-tooltip-right has-tooltip-info"
+                data-tooltip=@(userToolTip) @onclick="OnLogOut">
+                <span class="icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </span>
+                <span>@Localizer["LogOut"]</span>
+            </button>
+        </Authorized>
+        <NotAuthorized>
+            <button id="login-button" class="button is-rounded level-item" @onclick="OnLogIn">
+                <span class="icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>@Localizer["LogIn"]</span>
+            </button>
+        </NotAuthorized>
+    </AuthorizeView>
+</span>

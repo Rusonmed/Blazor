@@ -1,0 +1,31 @@
+﻿<!--  Copyright (c) 2021 David Pine. All rights reserved.
+      Licensed under the MIT License.
+-->
+
+@inherits LocalizableComponentBase<PageFooter>
+
+<div class="columns has-text-centered">
+    <p class="column" translate="no">
+        <strong>
+            Learning Blazor
+        </strong> by
+        <a href="@DavidPineUrl" target="_blank">
+            David Pine.
+        </a>
+    </p>
+    <p class="column" translate="no">
+        The <a href="@CodeUrl" target="_blank">
+            <i class="fab fa-github"></i> source code
+        </a> is licensed
+        <a href="@LicenseUrl">
+            MIT.
+        </a>
+    </p>
+    <p class="column">
+        <a href="/privacy">@Localizer["Privacy"]</a> &bull;
+        <a href="/termsandconditions">@Localizer["Terms"]</a>
+    </p>
+    <p class="column" translate="no">
+        @_frameworkDescription
+    </p>
+</div>
